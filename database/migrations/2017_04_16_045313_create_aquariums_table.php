@@ -18,8 +18,8 @@ class CreateAquariumsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name');
-            $table->string('size')->nullable();
-            $table->string('type')->nullable();
+            $table->integer('size');
+            $table->string('type');
             $table->string('image')->nullable();
             $table->timestamps();
             $table->binary('notes')->nullable();

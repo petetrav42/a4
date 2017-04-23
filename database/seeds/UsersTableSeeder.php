@@ -19,5 +19,13 @@ class UsersTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
         ]);
+
+        Users::insert([
+            'name' => 'Admin',
+            'email' => 'admin2@admin.com',
+            'password' => bcrypt('password'),
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
     }
 }

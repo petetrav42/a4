@@ -16,11 +16,12 @@ class CreateFishesTable extends Migration
         Schema::create('fishes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tank_id');
-            $table->string('name');
-            $table->string('type');
-            $table->string('family')->nullable();
-            $table->string('reef_safe')->nullable();
-            $table->integer('min_tank_size')->nullable();
+            $table->string('name'); //fish name
+            $table->string('type'); //fresh or marine
+            $table->string('care_level')->nullable(); //easy or hard
+            $table->string('temperament')->nullable(); //peaceful or aggressive
+            $table->string('reef_compatible')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->string('notes')->nullable();
         });
