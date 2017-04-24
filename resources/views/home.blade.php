@@ -21,7 +21,7 @@
                             @if($aquarium->image)
                                 <img src="{{$aquarium->image}}" title="{{$aquarium->name}}" class="pictureBorder" />
                             @else
-                                <img src="images/noimage.png" title="No Picture" class='pictureBorder'/>
+                                <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
                             @endif
                             <div class="col">
                                 <div class="row"><b>Name:</b> {{$aquarium->name}} </div>
@@ -29,8 +29,7 @@
                                 <div class="row"><b>Type:</b> {{$aquarium->type}}</div>
                                 <div class="row">
                                     <form method="GET" action="/aquarium/view/{{$aquarium->id}}">
-<!--                                        <input type='hidden' name='id' id='id' value='{{$aquarium->id}}' style="display: none;">-->
-                                        <input type='submit' class='btn btn-primary btn-aquarium-padding' value='View Tank Details'>
+                                        <input type='submit' class='btn btn-primary btn-aquarium-padding' value='View Details'>
                                     </form>
                                 </div>
                             </div>

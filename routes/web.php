@@ -16,24 +16,21 @@ Route::post('/aquarium/delete/{id}', 'AquariumController@deleteAquarium');
 
 
 //Fish Routes
-Route::get('/fish/view/{id}', 'AquariumController@fishDetails');
-Route::get('/fish/add/{id}', 'AquariumController@addFish');
-Route::post('/fish/add', 'AquariumController@saveFish');
-Route::get('/fish/edit/{id}', 'AquariumController@editFish');
-Route::post('/fish/edit', 'AquariumController@updateFish');
-Route::post('/fish/delete/{id}', 'AquariumController@deleteFish');
-
-
-//Route::get('/backToAquarium', 'AquariumController@backToAquarium');
+Route::get('/fish/view/{id}', 'FishController@fishDetails');
+Route::get('/fish/add/{id}', 'FishController@addFish');
+Route::post('/fish/add', 'FishController@saveFish');
+Route::get('/fish/edit/{id}', 'FishController@editFish');
+Route::post('/fish/edit', 'FishController@updateFish');
+Route::post('/fish/delete/{id}', 'FishController@deleteFish');
 
 
 //Coral Routes
-Route::get('/coral/view/{id}', 'AquariumController@coralDetails');
-Route::get('/coral/add/{id}', 'AquariumController@addCoral');
-Route::post('/coral/add', 'AquariumController@saveCoral');
-Route::get('/coral/edit/{id}', 'AquariumController@editCoral');
-Route::post('/coral/edit', 'AquariumController@updateCoral');
-Route::post('/coral/delete/{id}', 'AquariumController@deleteCoral');
+Route::get('/coral/view/{id}', 'CoralController@coralDetails');
+Route::get('/coral/add/{id}', 'CoralController@addCoral');
+Route::post('/coral/add', 'CoralController@saveCoral');
+Route::get('/coral/edit/{id}', 'CoralController@editCoral');
+Route::post('/coral/edit', 'CoralController@updateCoral');
+Route::post('/coral/delete/{id}', 'CoralController@deleteCoral');
 
 
 //Dev logger

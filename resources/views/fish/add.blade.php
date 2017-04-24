@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('aquarium')
+<li class="addAquariumMargin">
+    <form method="GET" action="/aquarium/view/{{$tank_id}}">
+        <input type='submit' class='btn btn-primary btn-aquarium-padding' value='Back'>
+    </form>
+</li>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,7 +17,7 @@
                 <div class="panel-body">
                     <form method='POST' action='/fish/add' class='form-horizontal'>
                         {{ csrf_field() }}
-                        <input type='hidden' name='tank_id' id='tank_id' value='{{old('tank_id')}}'>
+                        <input type='hidden' name='tank_id' id='tank_id' value='{{$tank_id}}'>
                         <div class='form-group'>
                             <label for='name' class='col-sm-5 control-label'>Fish Name<span class="required">*</span></label>
                             <div class='col-sm-4'>
@@ -24,9 +32,13 @@
                             </div>
                         </div>
                         <div class='form-group'>
-                            <label for='type' class='col-sm-5 control-label'>Type<span class="required">*</span></label>
+                            <label for='type' class='col-sm-5 control-label'>Fish Type<span class="required">*</span></label>
                             <div class='col-sm-4'>
-                                <input type='number' name='type' id='type' value='{{old('type') }}' class='form-control'>
+                                <select class='form-control' name='type' id='type'>
+                                    <option value='' >Choose One</option>
+                                    <option value='{{'Freshwater'}}' @if(old('type') == 'Freshwater') SELECTED @endif>Freshwater</option>
+                                    <option value='{{'Saltwater'}}' @if(old('type') == 'Saltwater') SELECTED @endif>Saltwater</option>
+                                </select>
                                 @if($errors->get('type'))
                                 <div class="alert-danger centerText">
                                     @foreach($errors->get('type') as $error)
@@ -52,7 +64,7 @@
                             <div class='col-sm-4'>
                                 <select class='form-control' name='temperament' id='temperament'>
                                     <option value='' >Choose One</option>
-                                    <option value='{{'Peaceful'}}' @if(old('temperament') == 'Easy') SELECTED @endif>Peaceful</option>
+                                    <option value='{{'Peaceful'}}' @if(old('temperament') == 'Peaceful') SELECTED @endif>Peaceful</option>
                                     <option value='{{'Semi-aggressive'}}' @if(old('temperament') == 'Semi-aggressive') SELECTED @endif>Semi-aggressive</option>
                                     <option value='{{'Aggressive'}}' @if(old('temperament') == 'Aggressive') SELECTED @endif>Aggressive</option>
                                 </select>
@@ -66,7 +78,7 @@
                             </div>
                         </div>
                         <div class='form-group'>
-                            <label for='image' class='col-sm-5 control-label'>Tank Image</label>
+                            <label for='image' class='col-sm-5 control-label'>Fish Image URL</label>
                             <div class='col-sm-4'>
                                 <input type='text' name='image' id='image' value='{{old('image') }}' class='form-control'>
                             </div>

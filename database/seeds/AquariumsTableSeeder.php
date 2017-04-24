@@ -14,10 +14,10 @@ class AquariumsTableSeeder extends Seeder
     {
         Aquarium::insert([
             'user_id' => 1,
-            'name' => 'Amazing Tank',
+            'name' => 'Amazing 125 Gallon Tank',
             'size' => 125,
             'type' => 'Freshwater',
-            'image' => 'images/freshwater.jpg',
+            'image' => 'http://www.aquatechaquariumservice.com/images/tropicalfish_fishtank.jpg',
             'notes' => 'notes field',
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
@@ -28,7 +28,7 @@ class AquariumsTableSeeder extends Seeder
             'name' => '180 Gallon Tank',
             'size' => 180,
             'type' => 'Saltwater',
-            'image' => 'images/saltwater.jpg',
+            'image' => 'https://s-media-cache-ak0.pinimg.com/originals/73/0c/47/730c47955e20185563122f613da0de08.jpg',
             'notes' => 'notes field',
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
@@ -36,10 +36,10 @@ class AquariumsTableSeeder extends Seeder
 
         Aquarium::insert([
             'user_id' => 1,
-            'name' => 'Amazing Tank',
+            'name' => '125 Gallon Tank',
             'size' => 125,
             'type' => 'Freshwater',
-            'image' => 'images/freshwater.jpg',
+            'image' => 'https://i.ytimg.com/vi/34l5YdYiEHo/maxresdefault.jpg',
             'notes' => 'notes field',
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
@@ -47,42 +47,10 @@ class AquariumsTableSeeder extends Seeder
 
         Aquarium::insert([
             'user_id' => 1,
-            'name' => '180 Gallon Tank',
-            'size' => 55,
-            'type' => 'Saltwater',
-            'image' => 'images/saltwater.jpg',
-            'notes' => 'notes field',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-        ]);
-
-        Aquarium::insert([
-            'user_id' => 1,
-            'name' => 'Amazing Tank',
+            'name' => '210 Gallon Tank',
             'size' => 210,
-            'type' => 'Freshwater',
-            'image' => 'images/freshwater.jpg',
-            'notes' => 'notes field',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-        ]);
-
-        Aquarium::insert([
-            'user_id' => 1,
-            'name' => '180 Gallon Tank',
-            'size' => 20,
             'type' => 'Saltwater',
-            'image' => 'images/saltwater.jpg',
-            'notes' => 'notes field',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-        ]);
-
-        Aquarium::insert([
-            'user_id' => 1,
-            'name' => 'Amazing Tank',
-            'size' => 75,
-            'type' => 'Freshwater',
+            'image' => 'https://s-media-cache-ak0.pinimg.com/originals/27/a5/22/27a5224c9446083381d10ba7827f1b15.jpg',
             'notes' => 'notes field',
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),

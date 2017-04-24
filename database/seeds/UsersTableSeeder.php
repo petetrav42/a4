@@ -14,15 +14,15 @@ class UsersTableSeeder extends Seeder
     {
         Users::insert([
             'name' => 'Travis',
-            'email' => 'admin@admin.com',
+            'email' => 'a@admin.com',
             'password' => bcrypt('password'),
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
         ]);
 
         Users::insert([
-            'name' => 'Admin',
-            'email' => 'admin2@admin.com',
+            'name' => 'Jessica',
+            'email' => 'b@admin.com',
             'password' => bcrypt('password'),
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),

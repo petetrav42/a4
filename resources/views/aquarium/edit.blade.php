@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class='form-group'>
-                            <label for='image' class='col-sm-5 control-label'>Tank Image</label>
+                            <label for='image' class='col-sm-5 control-label'>Tank Image URL</label>
                             <div class='col-sm-4'>
                                 <input type='text' name='image' id='image' value='{{old('image', $aquarium->image) }}' class='form-control'>
                                 @if($errors->get('image'))

@@ -29,7 +29,7 @@
                 <div class="panel-body">
                     <div class="col-lg-6 centerText">
                         @if($aquarium->image)
-                        <img src="/{{$aquarium->image}}" title="{{$aquarium->name}}" class="pictureBorder" />
+                        <img src="{{$aquarium->image}}" title="{{$aquarium->name}}" class="pictureBorder" />
                         @else
                         <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
                         @endif
@@ -75,45 +75,63 @@
                             </tr>
                         </table>
                     </div>
+                    <div class="col-lg-12 centerText borderTop">
+                        <h2>Fish</h2>
+                    </div>
                     @if($fish_count)
-                        <div class="col-lg-12 centerText">
-                            <h2>Fish</h2>
-                        </div>
                         @foreach($fishes as $fish)
                             <div class="col-lg-6 centerText">
                                 @if($fish->image)
-                                    <img src="/{{$fish->image}}" title="{{$fish->name}}" class="pictureBorder" />
+                                    <img src="{{$fish->image}}" title="{{$fish->name}}" class="pictureBorder" />
                                 @else
                                     <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
                                 @endif
                                 <div class="col">
                                     <div class="row"><b>Name:</b> {{$fish->name}} </div>
                                 </div>
-                                <form method="GET" action="/fish">
-                                    <input type='text' name='fishId' id='fishId' value='{{$fish->id}}' style="display: none;">
-                                    <input type='submit' class='btn btn-primary btn-aquarium-padding' value='View Fish Details'>
+                                <form method="GET" action="/fish/view/{{$fish->id}}">
+                                    <input type='submit' class='btn btn-primary btn-aquarium-padding' value='View Details'>
                                 </form>
                                 <br /><br />
                             </div>
                         @endforeach
+                    @else
+                    <div class="col-lg-12 centerText">
+                        <p>You have no fish added to this aquarium.  Select "Add Fish" to add your first fish.</p>
+                        <form method="GET" action="/fish/add/{{$aquarium->id}}">
+                            <input type='submit' class='btn btn-primary btn-aquarium-padding' value='Add Fish'>
+                        </form>
+                    </div>
                     @endif
-                    @if($coral_count)
-                        <div class="col-lg-12 centerText">
+                    @if($aquarium->type == 'Saltwater')
+                        <div class="col-lg-12 centerText borderTop">
                             <h2>Coral</h2>
                         </div>
-                        @foreach($corals as $coral)
-                            <div class="col-lg-6 centerText">
-                                @if($coral->image)
-                                    <img src="/{{$coral->image}}" title="{{$coral->name}}" class="pictureBorder" />
-                                @else
-                                    <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
-                                @endif
-                                <div class="col">
-                                    <div class="row"><b>Name:</b> {{$coral->name}} </div>
+                        @if($coral_count)
+                            @foreach($corals as $coral)
+                                <div class="col-lg-6 centerText">
+                                    @if($coral->image)
+                                        <img src="{{$coral->image}}" title="{{$coral->name}}" class="pictureBorder" />
+                                    @else
+                                        <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
+                                    @endif
+                                    <div class="col">
+                                        <div class="row"><b>Name:</b> {{$coral->name}} </div>
+                                    </div>
+                                    <form method="GET" action="/coral/view/{{$coral->id}}">
+                                        <input type='submit' class='btn btn-primary btn-aquarium-padding' value='View Details'>
+                                    </form>
+                                    <br /><br />
                                 </div>
-                                <br /><br />
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @else
+                        <div class="col-lg-12 centerText">
+                            <p>You have no corals added to this aquarium.  Select "Add Coral" to add your first coral.</p>
+                            <form method="GET" action="/coral/add/{{$aquarium->id}}">
+                                <input type='submit' class='btn btn-primary btn-aquarium-padding' value='Add Coral'>
+                            </form>
+                        </div>
+                        @endif
                     @endif
                 </div>
             </div>
