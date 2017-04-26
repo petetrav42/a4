@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('aquarium')
+@section('buttons')
 <li class="addAquariumMargin">
     <form method="GET" action="/fish/add/{{$aquarium->id}}">
         <input type='submit' class='btn btn-primary btn-aquarium-padding' value='Add Fish'>
@@ -50,11 +50,11 @@
                             </tr>
                             <tr>
                                 <td class="aquarium-detail-name"><b>Date Added:</b></td>
-                                <td class="aquarium-detail-value">{{ date('F d, Y', strtotime($aquarium->created_at)) }}</td>
+                                <td class="aquarium-detail-value">{{ date('F d, Y @ H:i:s', strtotime($aquarium->created_at)) }}</td>
                             </tr>
                             <tr>
                                 <td class="aquarium-detail-name"><b>Last Updated:</b></td>
-                                <td class="aquarium-detail-value">{{ date('F d, Y', strtotime($aquarium->updated_at)) }}</td>
+                                <td class="aquarium-detail-value">{{ date('F d, Y @ H:i:s', strtotime($aquarium->updated_at)) }}</td>
                             </tr>
                             <tr>
                                 <td class="aquarium-detail-name"><b>Notes:</b></td>
@@ -67,13 +67,24 @@
                                     </form>
                                 </td>
                                 <td class="aquarium-detail-value">
-                                    <form method="POST" action="/aquarium/delete/{{$aquarium->id}}" >
+                                    <form class="delete" method="POST" action="/aquarium/delete/{{$aquarium->id}}" >
                                         {{ csrf_field() }}
                                         <input type='submit' class='btn btn-primary btn-aquarium-padding' value='Delete'>
                                     </form>
+                                    <a class="btn btn-primary btn-aquarium-padding" onclick="return confirm('Confirm deleting ? ' + {{$aquarium->name}} + +
+                                     'This will also remove associated fish/corals.')" href="{{url('/aquarium/delete/'.$aquarium->id)}}">Delete</a>
                                 </td>
                             </tr>
                         </table>
+                        <li class="message">
+                            <div class="ui">
+                                <p>A basic message</p>
+                                <button>Try me!</button>
+                            </div>
+                            <pre><span class="attr"><script>
+  sweetAlert("Hello world!");
+  </script></pre>
+                        </li>
                     </div>
                     <div class="col-lg-12 centerText borderTop">
                         <h2>Fish</h2>

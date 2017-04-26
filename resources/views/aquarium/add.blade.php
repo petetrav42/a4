@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('aquarium')
+@section('buttons')
 <li class="addAquariumMargin">
     <form method="GET" action="/">
         <input type='submit' class='btn btn-primary btn-aquarium-padding' value='Back'>
@@ -19,7 +19,7 @@
                         {{ csrf_field() }}
                         <input type='hidden' name='user_id' id='user_id' value='{{Auth::user()->id}}'>
                         <div class='form-group'>
-                            <label for='name' class='col-sm-5 control-label'>Tank Name<span class="required">*</span></label>
+                            <label for='name' class='col-sm-5 control-label'>Name<span class="required">*</span></label>
                             <div class='col-sm-4'>
                                 <input type='text' name='name' id='name' value='{{old('name') }}' class='form-control'>
                                 @if($errors->get('name'))
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class='form-group'>
-                            <label for='tankSize' class='col-sm-5 control-label'>Tank Size<span class="required">*</span></label>
+                            <label for='tankSize' class='col-sm-5 control-label'>Size<span class="required">*</span></label>
                             <div class='col-sm-4'>
                                 <input type='number' name='tankSize' id='tankSize' value='{{old('tankSize') }}' class='form-control'>
                                 @if($errors->get('tankSize'))
@@ -45,13 +45,10 @@
                             </div>
                         </div>
                         <div class='form-group'>
-                            <label for='type' class='col-sm-5 control-label'>Tank Type<span class="required">*</span></label>
+                            <label for='type' class='col-sm-5 control-label'>Type<span class="required">*</span></label>
                             <div class='col-sm-4'>
-                                <select class='form-control' name='type' id='type'>
-                                    <option value='' >Choose One</option>
-                                    <option value='{{'Freshwater'}}' @if(old('type') == 'Freshwater') SELECTED @endif>Freshwater</option>
-                                    <option value='{{'Saltwater'}}' @if(old('type') == 'Saltwater') SELECTED @endif>Saltwater</option>
-                                </select>
+                                <input type="radio" name="type" value="{{'Freshwater'}}" @if(old('type') == 'Freshwater') CHECKED @endif> Freshwater
+                                <input type="radio" name="type" value="{{'Saltwater'}}" @if(old('type') == 'Saltwater') CHECKED @endif> Saltwater
                                 @if($errors->get('type'))
                                 <div class="alert-danger centerText">
                                     @foreach($errors->get('type') as $error)
@@ -62,7 +59,7 @@
                             </div>
                         </div>
                         <div class='form-group'>
-                            <label for='image' class='col-sm-5 control-label'>Tank Image URL</label>
+                            <label for='image' class='col-sm-5 control-label'>Image URL</label>
                             <div class='col-sm-4'>
                                 <input type='text' name='image' id='image' value='{{old('image') }}' class='form-control'>
                             </div>
@@ -71,9 +68,7 @@
                         <div class='form-group'>
                             <label for='notes' class='col-sm-5 control-label'>Notes</label>
                             <div class='col-sm-4'>
-                                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>
-                                    {{old('notes') }}
-                                </textarea>
+                                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>{{old('notes') }}</textarea>
                             </div>
                         </div>
                         <div class='form-group'>

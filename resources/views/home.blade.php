@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('aquarium')
+@section('buttons')
     <li class="addAquariumMargin">
         <form method="GET" action="/aquarium/add/{{Auth::user()->id}}">
             <input type='submit' class='btn btn-primary btn-aquarium-padding' value='Add Aquarium'>

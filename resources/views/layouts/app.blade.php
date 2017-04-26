@@ -12,10 +12,13 @@
 
     <!-- Styles -->
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sweetalert.css')}}" rel="stylesheet" type="text/css">
     <!-- Scripts -->
+    <script src="{{ asset('js/sweetalert.js')}}"></script>
+    @include('Alerts::alerts')
+
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -55,7 +58,7 @@
                             <li class='btn btn-primary addAquariumMargin'><a href="{{route('login')}}">Login</a></li>
                             <li class='btn btn-primary addAquariumMargin'><a href="{{route('register')}}">Register</a></li>
                         @else
-                            @yield('aquarium')
+                            @yield('buttons')
                             <li class="btn btn-primary addAquariumMargin">
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

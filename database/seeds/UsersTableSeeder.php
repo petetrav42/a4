@@ -13,16 +13,16 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         Users::insert([
-            'name' => 'Travis',
-            'email' => 'a@admin.com',
+            'name' => 'DWA15',
+            'email' => 'demo@demo.com',
             'password' => bcrypt('password'),
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
         ]);
 
         Users::insert([
-            'name' => 'Jessica',
-            'email' => 'b@admin.com',
+            'name' => 'CSCIE15',
+            'email' => 'demo2@demo.com',
             'password' => bcrypt('password'),
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),

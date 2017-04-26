@@ -13,7 +13,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <h1 class="panel-heading centerText">Add Fish</h1>
+                <div class="panel-heading">
+                <h1  class="centerText">Add Fish To {{$aquarium->name}}</h1>
+                </div>
                 <div class="panel-body">
                     <form method='POST' action='/fish/add' class='form-horizontal'>
                         {{ csrf_field() }}
@@ -36,7 +38,7 @@
                             <div class='col-sm-4'>
                                 <select class='form-control' name='type' id='type'>
                                     <option value='' >Choose One</option>
-                                    <option value='{{'Freshwater'}}' @if(old('type') == 'Freshwater') SELECTED @endif>Freshwater</option>
+                                    <option value='{{'Freshwater'}}' @if(old('type', $aquarium->type) == 'Freshwater') SELECTED @endif>Freshwater</option>
                                     <option value='{{'Saltwater'}}' @if(old('type') == 'Saltwater') SELECTED @endif>Saltwater</option>
                                 </select>
                                 @if($errors->get('type'))
@@ -70,13 +72,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class='form-group'>
-                            <label for='reef_compatible' class='col-sm-5 control-label'>Reef Compatible</label>
-                            <div class='col-sm-4'>
-                                <input type="radio" name="reef_compatible" value="{{'Yes'}}" @if(old('reef_compatible') == 'Yes') CHECKED @endif> Yes
-                                <input type="radio" name="reef_compatible" value="{{'No'}}" @if(old('reef_compatible') == 'Semi-aggressive') CHECKED @endif> No
+                        @if($aquarium->type!='Freshwater')
+                            <div class='form-group'>
+                                <label for='reef_compatible' class='col-sm-5 control-label'>Reef Compatible</label>
+                                <div class='col-sm-4'>
+                                    <input type="radio" name="reef_compatible" value="{{'Yes'}}" @if(old('reef_compatible') == 'Yes') CHECKED @endif> Yes
+                                    <input type="radio" name="reef_compatible" value="{{'No'}}" @if(old('reef_compatible') == 'No') CHECKED @endif> No
+                                </div>
                             </div>
-                        </div>
+                        @endif
                         <div class='form-group'>
                             <label for='image' class='col-sm-5 control-label'>Fish Image URL</label>
                             <div class='col-sm-4'>
@@ -87,9 +91,7 @@
                         <div class='form-group'>
                             <label for='notes' class='col-sm-5 control-label'>Notes</label>
                             <div class='col-sm-4'>
-                                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>
-                                    {{old('notes') }}
-                                </textarea>
+                                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>{{old('notes') }}</textarea>
                             </div>
                         </div>
                         <div class='form-group'>

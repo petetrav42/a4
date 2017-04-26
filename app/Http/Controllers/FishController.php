@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Validator;
 use Auth;
 use App\Fish;
+use App\Aquarium;
 
 class FishController extends Controller
 {
@@ -47,7 +48,11 @@ class FishController extends Controller
      * @return Fish .add
      */
     public function addFish($tank_id){
-        return view('fish/add')->with(['tank_id'=>$tank_id]);
+
+        //Get an aquarium record for the new fish to use in the view
+        $aquarium = Aquarium::find($tank_id);
+
+        return view('fish/add')->with(['tank_id'=>$tank_id, 'aquarium' => $aquarium]);
     }
 
     /**

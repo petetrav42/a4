@@ -40,13 +40,15 @@ h2{
 }
 
 .aquarium-detail-name{
-    width: 50%;
+    width: 20%;
     text-align: end;
     padding-right: 10px;
+    vertical-align: top;
 }
 
 .aquarium-detail-value{
     float: left;
+    text-align: left;
 }
 
 @media (min-width: 768px){

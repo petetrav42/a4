@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fad3ebdda9b3edb0802daab22a463af8",
+    "content-hash": "6397a22b9cf445718a308d9f9b7df5d1",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -201,6 +201,45 @@
                 "parser"
             ],
             "time": "2017-03-29T16:04:15+00:00"
+        },
+        {
+            "name": "infinety/alerts",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Infinety/alerts.git",
+                "reference": "c2b4507e38deff27b28a31ff13f3349b0afe9122"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Infinety/alerts/zipball/c2b4507e38deff27b28a31ff13f3349b0afe9122",
+                "reference": "c2b4507e38deff27b28a31ff13f3349b0afe9122",
+                "shasum": ""
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Infinety\\Alerts\\": "/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Infinety",
+                    "email": "create@infinety.co.uk"
+                }
+            ],
+            "description": "A Sweet Alert package for Laravel 5>",
+            "keywords": [
+                "alert",
+                "laravel",
+                "laravel sweet alert",
+                "sweet-alert"
+            ],
+            "time": "2016-09-18 15:07:52"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -3501,7 +3540,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "infinety/alerts": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

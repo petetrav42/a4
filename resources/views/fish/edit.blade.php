@@ -88,9 +88,7 @@
                         <div class='form-group'>
                             <label for='notes' class='col-sm-5 control-label'>Notes</label>
                             <div class='col-sm-4'>
-                                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>
-                                    {{old('notes', $fish->notes) }}
-                                </textarea>
+                                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>{{old('notes', $fish->notes) }}</textarea>
                             </div>
                         </div>
                         <div class='form-group'>

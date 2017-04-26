@@ -60,6 +60,12 @@
                             </div>
                         </div>
                     </form>
+                    <br />
+                    <div class="centerText">
+                        <p><u>Use below logins for DWA15 demo purposes</u></p>
+                        <p>demo@demo.com:password</p>
+                        <p>demo2@demo.com:password</p>
+                    </div>
                 </div>
             </div>
         </div>

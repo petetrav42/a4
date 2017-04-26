@@ -222,11 +222,11 @@ class AquariumController extends Controller
 
         //Custom error messages
         $messages = [
-            'name.required' => 'Tank name is required',
-            'tankSize.required' => 'Tank size is required',
-            'tankSize.numeric' => 'Tank size must be numeric',
-            'tankSize.min' => 'Tank size must be a positive number',
-            'type.required' => 'Tank type is required',
+            'name.required' => 'Name is required',
+            'tankSize.required' => 'Size is required',
+            'tankSize.numeric' => 'Size must be numeric',
+            'tankSize.min' => 'Size must be a positive number',
+            'type.required' => 'Type is required',
         ];
 
         //Run validation on the request according to the defined rules
