@@ -50,7 +50,6 @@ class AquariumsTableSeeder extends Seeder
             'name' => '210 Gallon Aquarium',
             'size' => 210,
             'type' => 'Saltwater',
-            'image' => 'https://s-media-cache-ak0.pinimg.com/originals/27/a5/22/27a5224c9446083381d10ba7827f1b15.jpg',
             'notes' => 'This my aquarium of all aquariums in the office.  It is managed by a local aquarium store.',
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),

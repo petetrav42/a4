@@ -27,7 +27,11 @@ h2{
 }
 
 .btn-aquarium-padding{
-    padding: 0px 10px;
+    padding: 0px 10px !important;
+}
+
+.btn-aquarium-padding:hover{
+    background-color: #2579a9 !important;
 }
 
 .btn-edit-aquarium{
@@ -59,8 +63,8 @@ h2{
     }
 }
 
-.centerText{
-    text-align: center;
+.nav>li>a{
+    padding: 0px 10px;
 }
 
 img.pictureBorder{
@@ -68,6 +72,13 @@ img.pictureBorder{
     border-radius: 15px;
     width: 400px;
     height: 225px;
+}
+
+@media (max-width: 490px){
+    img.pictureBorder {
+        width: 300px;
+        height: 169px;
+    }
 }
 
 .addAquariumMargin{
@@ -90,4 +101,10 @@ img.pictureBorder{
     border-top: 1px solid;
     border-color: #d3e0e9;
     margin-top: 20px;
+}
+
+@media (min-width: 768px){
+    .control-label {
+        padding-top:0px !important;
+    }
 }

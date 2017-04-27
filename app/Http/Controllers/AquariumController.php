@@ -36,7 +36,6 @@ class AquariumController extends Controller
     public function index()
     {
         $aquariums = Aquarium::where('user_id', '=', Auth::user()->id)->get();
-
         return view('home')->with(['aquariums' =>$aquariums]);
     }
 
@@ -62,9 +61,7 @@ class AquariumController extends Controller
         return view('aquarium/view')->with([
             'aquarium' => $aquarium,
             'fishes' => $fishes,
-            'fish_count' => count($fishes),
             'corals' => $corals,
-            'coral_count' => count($corals)
         ]);
     }
 
@@ -86,11 +83,10 @@ class AquariumController extends Controller
      */
     public function saveAquarium(Request $request){
 
-
         //Return to tank page if user selects cancel
         if($request->cancel){
             //Set the message to notify user they cancelled adding an aquarium
-            Session::flash('message', 'No aquarium was added');
+            Session::flash('message', 'Cancel: No aquarium was added');
             return redirect('/');
         }
 
@@ -100,7 +96,7 @@ class AquariumController extends Controller
         //If validation fails then return to original form to display the errors
         //no need to continue with the code
         if ($validator->fails()) {
-            return redirect('aquarium/add/'.$request->user_id)
+            return redirect('/aquarium/add/'.$request->user_id)
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -142,9 +138,9 @@ class AquariumController extends Controller
     public function updateAquarium(Request $request){
 
         //Return to tank page if user selects cancel
-        if($request->input('cancel')){
+        if($request->cancel){
             //Set the message to notify user they cancelled adding an aquarium
-            Session::flash('message', 'Aquarium not updated');
+            Session::flash('message', 'Cancel: ' . $request->name . ' not updated');
             return redirect('/aquarium/view/'. $request->id);
         }
 
@@ -199,11 +195,9 @@ class AquariumController extends Controller
             $aquarium->Delete();
         }
 
-        Session::flash('message', 'Your '. $aquarium->name . ' aquarium and associated fish/coral has been deleted');
+        Session::flash('message', 'Your '. $aquarium->name . ' and associated fish/coral have been deleted');
         return redirect('/');
     }
-
-
 
     /**
      * Validator method to validate fields and set custom messages as needed

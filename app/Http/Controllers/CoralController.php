@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Validator;
 use Auth;
 use App\Coral;
+use App\Aquarium;
 
 class CoralController extends Controller
 {
@@ -41,7 +42,11 @@ class CoralController extends Controller
      * @return Coral .add
      */
     public function addCoral($tank_id){
-        return view('coral/add')->with(['tank_id'=>$tank_id]);
+
+        //Get an aquarium record for the new coral to use in the view
+        $aquarium = Aquarium::find($tank_id);
+
+        return view('coral/add')->with(['tank_id'=>$tank_id, 'aquarium' => $aquarium]);
     }
 
     /**
@@ -55,7 +60,7 @@ class CoralController extends Controller
         //Return to tank page if user selects cancel
         if($request->cancel){
             //Set the message to notify user they cancelled adding a coral
-            Session::flash('message', 'No coral was added');
+            Session::flash('message', 'Cancel: No coral was added');
             return redirect('/aquarium/view/'. $request->tank_id);
         }
 
@@ -111,7 +116,7 @@ class CoralController extends Controller
         //Return to coral detail page if user selects cancel
         if($request->cancel){
             //Set the message to notify user they cancelled adding an aquarium
-            Session::flash('message', $request->name . ' not updated');
+            Session::flash('message', 'Cancel: ' . $request->name . ' was not updated');
             return redirect('/coral/view/'. $request->id);
         }
 

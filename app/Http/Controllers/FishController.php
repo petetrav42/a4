@@ -66,7 +66,7 @@ class FishController extends Controller
         //Return to tank page if user selects cancel
         if($request->cancel){
             //Set the message to notify user they cancelled adding a fish
-            Session::flash('message', 'No fish was added');
+            Session::flash('message', 'Cancel: No fish was added');
             return redirect('/aquarium/view/'. $request->tank_id);
         }
 
@@ -121,7 +121,7 @@ class FishController extends Controller
         //Return to fish detail page if user selects cancel
         if($request->cancel){
             //Set the message to notify user they cancelled adding an aquarium
-            Session::flash('message', $request->name . ' not updated');
+            Session::flash('message', 'Cancel: ' . $request->name . ' not updated');
             return redirect('/fish/view/'. $request->id);
         }
 
