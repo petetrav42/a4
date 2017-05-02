@@ -84,6 +84,9 @@
                         <div class="panel-body">
                             @yield('content')
                         </div>
+                        <footer>
+                            &copy; {{ date('Y') }} | Bonzella.com
+                        </footer>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: travis
- * Date: 4/23/17
- * Time: 3:40 PM
- */
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
@@ -21,8 +15,7 @@ class FishController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
@@ -33,26 +26,20 @@ class FishController extends Controller
      * @return Fish .view
      */
     public function fishDetails($id){
-        //Get the fish details
         $fish = Fish::find($id);
-
-        return view('fish/view')->with([
-            'fish' => $fish
-        ]);
+        return view('fish/view')->with(['fish' => $fish]);
     }
 
     /**
      * Show the add fish page
      *
-     * @param $tank_id
+     * @param $aquarium_id
      * @return Fish .add
      */
-    public function addFish($tank_id){
-
+    public function addFish($aquarium_id){
         //Get an aquarium record for the new fish to use in the view
-        $aquarium = Aquarium::find($tank_id);
-
-        return view('fish/add')->with(['tank_id'=>$tank_id, 'aquarium' => $aquarium]);
+        $aquarium = Aquarium::find($aquarium_id);
+        return view('fish/add')->with(['aquarium_id'=>$aquarium_id, 'aquarium' => $aquarium]);
     }
 
     /**
@@ -63,11 +50,11 @@ class FishController extends Controller
      */
     public function saveFish(Request $request){
 
-        //Return to tank page if user selects cancel
+        //Return to aquarium page if user selects cancel
         if($request->cancel){
             //Set the message to notify user they cancelled adding a fish
             Session::flash('message', 'Cancel: No fish was added');
-            return redirect('/aquarium/view/'. $request->tank_id);
+            return redirect('/aquarium/view/'. $request->aquarium_id);
         }
 
         //Validate the form values
@@ -76,14 +63,12 @@ class FishController extends Controller
         //If validation fails then return to original form to display the errors
         //no need to continue with the code
         if ($validator->fails()) {
-            return redirect('fish/add/'.$request->tank_id)
-                ->withErrors($validator)
-                ->withInput();
+            return redirect('fish/add/'.$request->aquarium_id)->withErrors($validator)->withInput();
         }
 
         //Create a new fish and set all the values
         $fish = new Fish();
-        $fish->tank_id = $request->tank_id;
+        $fish->aquarium()->associate($request->aquarium_id);
         $fish->name = $request->name;
         $fish->type = $request->type;
         $fish->care_level = $request->care_level;
@@ -102,6 +87,12 @@ class FishController extends Controller
         return redirect('/fish/view/' . $fish->id)->withInput(['fish' => $fish]);
     }
 
+    /**
+     * Get info to show edit fish page
+     *
+     * @param $id
+     * @return fish.edit
+     */
     public function editFish($id){
         $fish = Fish::find($id);
 
@@ -111,11 +102,15 @@ class FishController extends Controller
             return redirect('/');
         }
 
-        return view('/fish/edit')->with([
-            'id' => $id,
-            'fish' => $fish]);
+        return view('/fish/edit')->with(['id' => $id, 'fish' => $fish]);
     }
 
+    /**
+     * Update the selected fish
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function updateFish(Request $request){
 
         //Return to fish detail page if user selects cancel
@@ -131,15 +126,13 @@ class FishController extends Controller
         //If validation fails then return to original form to display the errors
         //no need to continue with the code
         if ($validator->fails()) {
-            return redirect('fish/edit/'.$request->id)
-                ->withErrors($validator)
-                ->withInput();
+            return redirect('fish/edit/'.$request->id)->withErrors($validator)->withInput();
         }
 
         $fish = Fish::find($request->id);
 
         //Set all the values from the form to update database
-        $fish->tank_id = $request->tank_id;
+        $fish->aquarium()->associate($request->aquarium_id);
         $fish->name = $request->name;
         $fish->type = $request->type;
         $fish->care_level = $request->care_level;
@@ -155,17 +148,22 @@ class FishController extends Controller
         return redirect('/fish/view/'. $request->id);
     }
 
+    /**
+     * Delete the selected fish
+     *
+     * @param $id
+     * @return aquarium.view
+     */
     public function deleteFish($id){
         //Get the fish details
         $fish = Fish::find($id);
 
-        //Delete the fish
         if($fish){
             $fish->Delete();
         }
 
         Session::flash('message', 'Your '. $fish->name . ' fish has been deleted');
-        return redirect('/aquarium/view/' . $fish->tank_id);
+        return redirect('/aquarium/view/' . $fish->aquarium_id);
     }
 
     /**
@@ -176,7 +174,6 @@ class FishController extends Controller
      */
     public function validateForm(Request $request)
     {
-
         //Validation rules for adding a fish
         $rules = array(
             'name' => 'required',

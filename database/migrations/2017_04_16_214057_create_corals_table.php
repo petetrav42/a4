@@ -15,7 +15,6 @@ class CreateCoralsTable extends Migration
     {
         Schema::create('corals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tank_id');
             $table->string('name');
             $table->string('type');
             $table->string('care_level')->nullable(); //easy or hard

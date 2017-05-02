@@ -15,7 +15,6 @@ class CreateFishesTable extends Migration
     {
         Schema::create('fishes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tank_id');
             $table->string('name'); //fish name
             $table->string('type'); //fresh or marine
             $table->string('care_level')->nullable(); //easy or hard

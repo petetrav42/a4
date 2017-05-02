@@ -13,7 +13,7 @@ class CoralsTableSeeder extends Seeder
     public function run()
     {
         Coral::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Actinodiscus Mushroom',
             'type' => 'Mushroom',
             'care_level' => 'Easy',
@@ -27,7 +27,7 @@ class CoralsTableSeeder extends Seeder
         ]);
 
         Coral::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Tabling Acropora Coral',
             'type' => 'SPS',
             'care_level' => 'Difficult',
@@ -41,7 +41,7 @@ class CoralsTableSeeder extends Seeder
         ]);
 
         Coral::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Radioactive Dragon Eyes Zoanthid',
             'type' => 'Polyps',
             'care_level' => 'Easy',
@@ -55,7 +55,7 @@ class CoralsTableSeeder extends Seeder
         ]);
 
         Coral::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Trumpet Coral',
             'type' => 'LPS',
             'care_level' => 'Easy',
@@ -69,7 +69,7 @@ class CoralsTableSeeder extends Seeder
         ]);
 
         Coral::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Frogspawn Coral',
             'type' => 'LPS',
             'care_level' => 'Moderate',

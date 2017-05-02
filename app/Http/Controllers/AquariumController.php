@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: travis
- * Date: 4/15/17
- * Time: 8:37 PM
- */
 
 namespace App\Http\Controllers;
 
@@ -12,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Aquarium;
-use App\Fish;
-use App\Coral;
 use Auth;
 
 class AquariumController extends Controller
@@ -49,8 +41,8 @@ class AquariumController extends Controller
 
         //Get the aquarium details
         $aquarium = Aquarium::find($id);
-        $fishes = Fish::where('tank_id', '=', $id)->get();
-        $corals = Coral::where('tank_id', '=', $id)->get();
+        $fishes = $aquarium->fishes;
+        $corals = $aquarium->corals;
 
         //redirect to main page if aquarium doesnt exist
         if(is_null($aquarium)){
@@ -96,14 +88,12 @@ class AquariumController extends Controller
         //If validation fails then return to original form to display the errors
         //no need to continue with the code
         if ($validator->fails()) {
-            return redirect('/aquarium/add/'.$request->user_id)
-                ->withErrors($validator)
-                ->withInput();
+            return redirect('/aquarium/add/'.$request->user_id)->withErrors($validator)->withInput();
         }
 
         //Create a new Aquarium and set all the values
         $aquarium = new Aquarium();
-        $aquarium->user_id = $request->user_id;
+        $aquarium->user()->associate($request->user_id);
         $aquarium->name = $request->name;
         $aquarium->size = $request->tankSize;
         $aquarium->type = $request->type;
@@ -120,6 +110,12 @@ class AquariumController extends Controller
         return redirect('/aquarium/view/' . $aquarium->id)->withInput(['aquarium' => $aquarium]);
     }
 
+    /**
+     * Show the edit aquarium page
+     *
+     * @param $id
+     * @return Aquarium .edit
+     */
     public function editAquarium($id){
 
         $aquarium = Aquarium::find($id);
@@ -130,11 +126,15 @@ class AquariumController extends Controller
             return redirect('/');
         }
 
-        return view('/aquarium/edit')->with([
-            'id' => $id,
-            'aquarium' => $aquarium]);
+        return view('/aquarium/edit')->with(['id' => $id, 'aquarium' => $aquarium]);
     }
 
+    /**
+     * Update the selected aquarium
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function updateAquarium(Request $request){
 
         //Return to tank page if user selects cancel
@@ -150,15 +150,13 @@ class AquariumController extends Controller
         //If validation fails then return to original form to display the errors
         //no need to continue with the code
         if ($validator->fails()) {
-            return redirect('aquarium/edit/'.$request->id)
-                ->withErrors($validator)
-                ->withInput();
+            return redirect('aquarium/edit/'.$request->id)->withErrors($validator)->withInput();
         }
 
         $aquarium = Aquarium::find($request->id);
 
         //Set all the values from the form to update database
-        $aquarium->user_id = $request->user_id;
+        $aquarium->user()->associate($request->user_id);
         $aquarium->name = $request->name;
         $aquarium->size = $request->tankSize;
         $aquarium->type = $request->type;
@@ -168,29 +166,23 @@ class AquariumController extends Controller
         $aquarium->save();
 
         Session::flash('message', $aquarium->name . ' successfully updated');
-
         return redirect('/aquarium/view/'. $request->id);
     }
 
-
+    /**
+     * Delete the selected aquarium and associated fish/corals
+     *
+     * @param $id
+     * @return home
+     */
     public function deleteAquarium($id){
 
         //Get the aquarium details
         $aquarium = Aquarium::find($id);
-        $fishes = Fish::where('tank_id', '=', $id)->get();
-        $corals = Coral::where('tank_id', '=', $id)->get();
-
-        //Delete associated corals
-        if($corals) {
-            Coral::where('tank_id', '=', $id)->delete();
-        }
-
-        //Delete associated fish
-        if($fishes) {
-            Fish::where('tank_id', '=', $id)->delete();
-        }
 
         //Delete aquarium
+        //This will also delete any associated fish/corals since
+        //cascade delete was set on the foreign key in the database
         if($aquarium){
             $aquarium->Delete();
         }

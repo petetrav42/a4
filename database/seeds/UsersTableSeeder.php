@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Users;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        Users::insert([
+        User::insert([
             'name' => 'DWA15',
             'email' => 'demo@demo.com',
             'password' => bcrypt('password'),
@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
         ]);
 
-        Users::insert([
+        User::insert([
             'name' => 'CSCIE15',
             'email' => 'demo2@demo.com',
             'password' => bcrypt('password'),

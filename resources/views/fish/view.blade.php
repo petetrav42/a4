@@ -5,7 +5,7 @@
 @endsection
 
 @section('back')
-    href="{{ url('/aquarium/view/' . $fish->tank_id) }}"
+    href="{{ url('/aquarium/view/' . $fish->aquarium_id) }}"
 @endsection
 
 @section('popup')

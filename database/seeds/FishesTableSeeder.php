@@ -13,7 +13,7 @@ class FishesTableSeeder extends Seeder
     public function run()
     {
         Fish::insert([
-            'tank_id' => 1,
+            'aquarium_id' => 1,
             'name' => 'Cobalt Blue Zebra Cichlid',
             'type' => 'Freshwater',
             'care_level' => 'Easy',
@@ -26,7 +26,7 @@ class FishesTableSeeder extends Seeder
         ]);
 
         Fish::insert([
-            'tank_id' => 1,
+            'aquarium_id' => 1,
             'name' => 'Bala Shark',
             'type' => 'Freshwater',
             'care_level' => 'Moderate',
@@ -39,7 +39,7 @@ class FishesTableSeeder extends Seeder
         ]);
 
         Fish::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Ocellaris Clownfish',
             'type' => 'Saltwater',
             'care_level' => 'Easy',
@@ -52,7 +52,7 @@ class FishesTableSeeder extends Seeder
         ]);
 
         Fish::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Tomato Clownfish',
             'type' => 'Saltwater',
             'care_level' => 'Easy',
@@ -65,7 +65,7 @@ class FishesTableSeeder extends Seeder
         ]);
 
         Fish::insert([
-            'tank_id' => 2,
+            'aquarium_id' => 2,
             'name' => 'Yellow Hawaiian Tang',
             'type' => 'Saltwater',
             'care_level' => 'Easy',

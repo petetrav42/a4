@@ -5,13 +5,13 @@
 @endsection
 
 @section('back')
-href="{{ url('/aquarium/view/' . $tank_id) }}"
+href="{{ url('/aquarium/view/' . $aquarium_id) }}"
 @endsection
 
 @section('content')
     <form method='POST' action='/coral/add' class='form-horizontal'>
         {{ csrf_field() }}
-        <input type='hidden' name='tank_id' id='tank_id' value='{{$tank_id}}'>
+        <input type='hidden' name='aquarium_id' id='aquarium_id' value='{{$aquarium_id}}'>
         <div class='form-group'>
             <label for='name' class='col-sm-5 control-label'>Coral Name<span class="required">*</span></label>
             <div class='col-sm-4'>

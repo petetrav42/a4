@@ -12,7 +12,7 @@ href="{{ url('/coral/view/' . $id) }}"
     <form method='POST' action='/coral/edit' class='form-horizontal'>
         {{ csrf_field() }}
         <input type='hidden' name='id' id='id' value='{{old('id', $id) }}'>
-        <input type='hidden' name='tank_id' id='tank_id' value='{{ old('tank_id', $coral->tank_id) }}'>
+        <input type='hidden' name='aquarium_id' id='aquarium_id' value='{{ old('aquarium_id', $coral->aquarium_id) }}'>
         <div class='form-group'>
             <label for='name' class='col-sm-5 control-label'>Coral Name<span class="required">*</span></label>
             <div class='col-sm-4'>
