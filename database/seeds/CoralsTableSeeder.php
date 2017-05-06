@@ -12,74 +12,23 @@ class CoralsTableSeeder extends Seeder
      */
     public function run()
     {
-        Coral::insert([
-            'aquarium_id' => 2,
-            'name' => 'Actinodiscus Mushroom',
-            'type' => 'Mushroom',
-            'care_level' => 'Easy',
-            'temperament' => 'Semi-aggressive',
-            'lighting' => 'Moderate',
-            'waterflow' => 'Low',
-            'image' => 'http://animal-world.com/encyclo/reef/corallimorph/images/RedMushroom_ACardinalisWRCo_C76.jpg',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'notes' => 'I love my Actinodiscus Mushroom',
-        ]);
+        $corals = [
+            [2,'Actinodiscus Mushroom','http://animal-world.com/encyclo/reef/corallimorph/images/RedMushroom_ACardinalisWRCo_C76.jpg','I love my Actinodiscus Mushroom'],
+            [2,'Tabling Acropora Coral','https://reefcorner.com/wp-content/uploads/Acropora-sp-Yellow-and-Purple-Tabling-Colony-1-Top.jpg','I love my Tabling Acropora Coral'],
+            [2,'Radioactive Dragon Eyes Zoanthid','http://imgs.markstraley.com/4/radioactive_dragon_eyes_zoanthids_02062010.jpg','Radioactive Dragon Eyes Zoanthid'],
+            [2,'Trumpet Coral','http://www.ultimatereef.net/uploader/2008Q4/greentrumpet18nov.jpg','I love my Trumpet Coral'],
+            [2,'Frogspawn Coral','http://www.aquaticlog.com/showcase/image.jpeg?imageId=8089','I have 3 Frogspawn Coral colonies in the tank']
+        ];
 
-        Coral::insert([
-            'aquarium_id' => 2,
-            'name' => 'Tabling Acropora Coral',
-            'type' => 'SPS',
-            'care_level' => 'Difficult',
-            'temperament' => 'Peaceful',
-            'lighting' => 'High',
-            'waterflow' => 'Strong',
-            'image' => 'https://reefcorner.com/wp-content/uploads/Acropora-sp-Yellow-and-Purple-Tabling-Colony-1-Top.jpg',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'notes' => 'I love my Tabling Acropora Coral',
-        ]);
-
-        Coral::insert([
-            'aquarium_id' => 2,
-            'name' => 'Radioactive Dragon Eyes Zoanthid',
-            'type' => 'Polyps',
-            'care_level' => 'Easy',
-            'temperament' => 'Semi-aggressive',
-            'lighting' => 'Moderate',
-            'waterflow' => 'Medium',
-            'image' => 'http://imgs.markstraley.com/4/radioactive_dragon_eyes_zoanthids_02062010.jpg',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'notes' => 'Radioactive Dragon Eyes Zoanthid',
-        ]);
-
-        Coral::insert([
-            'aquarium_id' => 2,
-            'name' => 'Trumpet Coral',
-            'type' => 'LPS',
-            'care_level' => 'Easy',
-            'temperament' => 'Peaceful',
-            'lighting' => 'Moderate',
-            'waterflow' => 'Medium',
-            'image' => 'http://www.ultimatereef.net/uploader/2008Q4/greentrumpet18nov.jpg',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'notes' => 'I love my Trumpet Coral',
-        ]);
-
-        Coral::insert([
-            'aquarium_id' => 2,
-            'name' => 'Frogspawn Coral',
-            'type' => 'LPS',
-            'care_level' => 'Moderate',
-            'temperament' => 'Aggressive',
-            'lighting' => 'Moderate',
-            'waterflow' => 'Medium',
-            'image' => 'http://www.aquaticlog.com/showcase/image.jpeg?imageId=8089',
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'notes' => 'I have 3 Frogspawn Coral colonies in the tank',
-        ]);
+        foreach($corals as $coral) {
+            Coral::insert([
+                'aquarium_id' => $coral[0],
+                'name' => $coral[1],
+                'image' => $coral[2],
+                'notes' => $coral[3],
+                'created_at' => Carbon\Carbon::yesterday()->toDateTimeString(),
+                'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            ]);
+        }
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAquariumsTable extends Migration
+class CreateAttributeFishTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateAquariumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('aquariums', function (Blueprint $table) {
+        Schema::create('attribute_fish', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('name');
-            $table->integer('size');
-            $table->string('type');
-            $table->string('image')->nullable();
-            $table->binary('notes')->nullable();
             $table->timestamps();
+            $table->integer('fish_id')->unsigned();
+            $table->integer('attribute_id')->unsigned();
+
+            $table->foreign('fish_id')->references('id')->on('fishes')->onDelete('cascade');;
+            $table->foreign('attribute_id')->references('id')->on('attributes');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateAquariumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aquariums');
+        Schema::drop('attribute_fish');
     }
 }

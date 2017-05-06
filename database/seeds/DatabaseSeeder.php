@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AquariumsTableSeeder::class);
         $this->call(FishesTableSeeder::class);
         $this->call(CoralsTableSeeder::class);
+        $this->call(AttributesTableSeeder::class);
+        $this->call(AttributeFishTableSeeder::class);
+        $this->call(AttributeCoralTableSeeder::class);
     }
 }

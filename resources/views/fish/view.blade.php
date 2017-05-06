@@ -43,20 +43,26 @@
             </tr>
             <tr>
                 <td class="aquarium-detail-name"><b>Type:</b></td>
-                <td class="aquarium-detail-value">{{$fish->type}}</td>
+                <td class="aquarium-detail-value">{{$fish->fish_type}}</td>
             </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Care Level:</b></td>
-                <td class="aquarium-detail-value">{{$fish->care_level}}</td>
-            </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Temperament:</b></td>
-                <td class="aquarium-detail-value">{{$fish->temperament}}</td>
-            </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Reef Safe:</b></td>
-                <td class="aquarium-detail-value">{{$fish->reef_compatible}}</td>
-            </tr>
+            @if($fish->care)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Care Level:</b></td>
+                    <td class="aquarium-detail-value">{{$fish->care}}</td>
+                </tr>
+            @endif
+            @if($fish->temperament)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Temperament:</b></td>
+                    <td class="aquarium-detail-value">{{$fish->temperament}}</td>
+                </tr>
+            @endif
+            @if($fish->fish_type!='Freshwater' && $fish->reef_compatible)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Reef Safe:</b></td>
+                    <td class="aquarium-detail-value">{{$fish->reef_compatible}}</td>
+                </tr>
+            @endif
             <tr>
                 <td class="aquarium-detail-name"><b>Date Added:</b></td>
                 <td class="aquarium-detail-value">{{ date('F d, Y @ H:i:s', strtotime($fish->created_at)) }}</td>
@@ -65,10 +71,12 @@
                 <td class="aquarium-detail-name"><b>Last Update:</b></td>
                 <td class="aquarium-detail-value">{{ date('F d, Y @ H:i:s', strtotime($fish->updated_at)) }}</td>
             </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Notes:</b></td>
-                <td class="aquarium-detail-value">{{$fish->notes}}</td>
-            </tr>
+            @if($fish->notes)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Notes:</b></td>
+                    <td class="aquarium-detail-value">{{$fish->notes}}</td>
+                </tr>
+            @endif
             <tr>
                 <td class="aquarium-detail-name">
                     <a class="btn btn-primary btn-aquarium-padding" href="{{ url('/fish/edit/' . $fish->id) }}">Edit</a>

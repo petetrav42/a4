@@ -16,7 +16,7 @@ href="{{ url('/fish/view/' . $id) }}"
         <div class='form-group'>
             <label for='name' class='col-sm-5 control-label'>Fish Name<span class="required">*</span></label>
             <div class='col-sm-4'>
-                <input type='text' name='name' id='name' value='{{old('name', $fish->name) }}' class='form-control'>
+                <input type='text' name='name' id='name' value='{{old('name', $fish->name) }}' class='form-control' maxlength="255">
                 @if($errors->get('name'))
                     <div class="alert-danger centerText">
                         @foreach($errors->get('name') as $error)
@@ -27,16 +27,17 @@ href="{{ url('/fish/view/' . $id) }}"
             </div>
         </div>
         <div class='form-group'>
-            <label for='type' class='col-sm-5 control-label'>Fish Type<span class="required">*</span></label>
+            <label for='fish_type' class='col-sm-5 control-label'>Fish Type<span class="required">*</span></label>
             <div class='col-sm-4'>
-                <select class='form-control' name='type' id='type'>
+                <select class='form-control' name='fish_type' id='fish_type'>
                     <option value='' >Choose One</option>
-                    <option value='{{'Freshwater'}}' @if(old('type', $fish->type) == 'Freshwater') SELECTED @endif>Freshwater</option>
-                    <option value='{{'Saltwater'}}' @if(old('type', $fish->type) == 'Saltwater') SELECTED @endif>Saltwater</option>
+                    @foreach($fish_type as $id => $value)
+                        <option value='{{$value}}' @if(old('fish_type', $fish->fish_type) == $value) SELECTED @endif>{{$value}}</option>
+                    @endforeach
                 </select>
-                @if($errors->get('type'))
+                @if($errors->get('fish_type'))
                     <div class="alert-danger centerText">
-                        @foreach($errors->get('type') as $error)
+                        @foreach($errors->get('fish_type') as $error)
                             {{ $error }}
                         @endforeach
                     </div>
@@ -44,13 +45,13 @@ href="{{ url('/fish/view/' . $id) }}"
             </div>
         </div>
         <div class='form-group'>
-            <label for='care_level' class='col-sm-5 control-label'>Care Level</label>
+            <label for='care' class='col-sm-5 control-label'>Care Level</label>
             <div class='col-sm-4'>
-                <select class='form-control' name='care_level' id='care_level'>
+                <select class='form-control' name='care' id='care'>
                     <option value='' >Choose One</option>
-                    <option value='{{'Easy'}}' @if(old('care_level', $fish->care_level) == 'Easy') SELECTED @endif>Easy</option>
-                    <option value='{{'Moderate'}}' @if(old('care_level', $fish->care_level) == 'Moderate') SELECTED @endif>Moderate</option>
-                    <option value='{{'Hard'}}' @if(old('care_level', $fish->care_level) == 'Hard') SELECTED @endif>Hard</option>
+                    @foreach($care as $id => $value)
+                        <option value='{{$value}}' @if(old('care', $fish->care) == $value) SELECTED @endif>{{$value}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -59,9 +60,9 @@ href="{{ url('/fish/view/' . $id) }}"
             <div class='col-sm-4'>
                 <select class='form-control' name='temperament' id='temperament'>
                     <option value='' >Choose One</option>
-                    <option value='{{'Peaceful'}}' @if(old('temperament', $fish->temperament) == 'Peaceful') SELECTED @endif>Peaceful</option>
-                    <option value='{{'Semi-aggressive'}}' @if(old('temperament', $fish->temperament) == 'Semi-aggressive') SELECTED @endif>Semi-aggressive</option>
-                    <option value='{{'Aggressive'}}' @if(old('temperament', $fish->temperament) == 'Aggressive') SELECTED @endif>Aggressive</option>
+                    @foreach($temperament as $id => $value)
+                        <option value='{{$value}}' @if(old('temperament', $fish->temperament) == $value) SELECTED @endif>{{$value}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -69,21 +70,36 @@ href="{{ url('/fish/view/' . $id) }}"
             <div class='form-group'>
                 <label for='reef_compatible' class='col-sm-5 control-label'>Reef Compatible</label>
                 <div class='col-sm-4 text-left'>
-                    <input type="radio" name="reef_compatible" value="{{'Yes'}}" @if(old('reef_compatible', $fish->reef_compatible) == 'Yes') CHECKED @endif> Yes
-                    <input type="radio" name="reef_compatible" value="{{'No'}}" @if(old('reef_compatible', $fish->reef_compatible) == 'Semi-aggressive') CHECKED @endif> No
+                    @foreach($reef_compatible as $id => $value)
+                        <input type="radio" name="reef_compatible" value="{{$value}}" @if(old('reef_compatible', $fish->reef_compatible) == $value) CHECKED @endif> {{$value}}
+                    @endforeach
                 </div>
             </div>
         @endif
         <div class='form-group'>
             <label for='image' class='col-sm-5 control-label'>Fish Image URL</label>
             <div class='col-sm-4'>
-                <input type='text' name='image' id='image' value='{{old('image', $fish->image) }}' class='form-control'>
+                <input type='text' name='image' id='image' value='{{old('image', $fish->image) }}' class='form-control' maxlength="255">
+                @if($errors->get('image'))
+                    <div class="alert-danger centerText">
+                        @foreach($errors->get('image') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
         <div class='form-group'>
             <label for='notes' class='col-sm-5 control-label'>Notes</label>
             <div class='col-sm-4'>
-                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>{{old('notes', $fish->notes) }}</textarea>
+                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control' maxlength="255">{{old('notes', $fish->notes) }}</textarea>
+                @if($errors->get('notes'))
+                    <div class="alert-danger centerText">
+                        @foreach($errors->get('notes') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
         <div class='form-group'>

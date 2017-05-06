@@ -15,14 +15,10 @@ class CreateFishesTable extends Migration
     {
         Schema::create('fishes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name'); //fish name
-            $table->string('type'); //fresh or marine
-            $table->string('care_level')->nullable(); //easy or hard
-            $table->string('temperament')->nullable(); //peaceful or aggressive
-            $table->string('reef_compatible')->nullable();
+            $table->string('name');
             $table->string('image')->nullable();
-            $table->timestamps();
             $table->string('notes')->nullable();
+            $table->timestamps();
         });
     }
 

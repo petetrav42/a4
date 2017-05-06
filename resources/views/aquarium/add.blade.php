@@ -15,7 +15,7 @@
         <div class='form-group'>
             <label for='name' class='col-sm-5 control-label'>Name<span class="required">*</span></label>
             <div class='col-sm-4'>
-                <input type='text' name='name' id='name' value='{{old('name') }}' class='form-control'>
+                <input type='text' name='name' id='name' value='{{old('name') }}' class='form-control' maxlength="255">
                 @if($errors->get('name'))
                     <div class="alert-danger">
                         @foreach($errors->get('name') as $error)
@@ -55,13 +55,27 @@
         <div class='form-group'>
             <label for='image' class='col-sm-5 control-label'>Image URL</label>
             <div class='col-sm-4'>
-                <input type='text' name='image' id='image' value='{{old('image') }}' class='form-control'>
+                <input type='text' name='image' id='image' value='{{old('image') }}' class='form-control' maxlength="255">
+                @if($errors->get('image'))
+                    <div class="alert-danger text-center">
+                        @foreach($errors->get('image') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
         <div class='form-group'>
             <label for='notes' class='col-sm-5 control-label'>Notes</label>
             <div class='col-sm-4'>
-                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control'>{{old('notes') }}</textarea>
+                <textarea rows="4" cols="50" name='notes' id='notes' class='form-control' maxlength="255">{{old('notes') }}</textarea>
+                @if($errors->get('notes'))
+                    <div class="alert-danger text-center">
+                        @foreach($errors->get('notes') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
         <div class='form-group'>

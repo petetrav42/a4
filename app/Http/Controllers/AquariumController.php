@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Aquarium;
+use App\Fish;
 use Auth;
 
 class AquariumController extends Controller
@@ -83,10 +84,8 @@ class AquariumController extends Controller
         }
 
         //Validate the form values
-        $validator = $this->validateForm($request);
-
         //If validation fails then return to original form to display the errors
-        //no need to continue with the code
+        $validator = Aquarium::validateAquarium($request);
         if ($validator->fails()) {
             return redirect('/aquarium/add/'.$request->user_id)->withErrors($validator)->withInput();
         }
@@ -145,10 +144,8 @@ class AquariumController extends Controller
         }
 
         //Validate the form values
-        $validator = $this->validateForm($request);
-
         //If validation fails then return to original form to display the errors
-        //no need to continue with the code
+        $validator = Aquarium::validateAquarium($request);
         if ($validator->fails()) {
             return redirect('aquarium/edit/'.$request->id)->withErrors($validator)->withInput();
         }
@@ -184,40 +181,17 @@ class AquariumController extends Controller
         //This will also delete any associated fish/corals since
         //cascade delete was set on the foreign key in the database
         if($aquarium){
+            $fishes = $aquarium->fishes;
+            $corals = $aquarium->corals;
+
+
+            //$fishes->attributes()->detach();
+            //$corals->attributes()->detach();
+
             $aquarium->Delete();
         }
 
         Session::flash('message', 'Your '. $aquarium->name . ' and associated fish/coral have been deleted');
         return redirect('/');
-    }
-
-    /**
-     * Validator method to validate fields and set custom messages as needed
-     *
-     * @param Request $request
-     * @return mixed
-     */
-    public function validateForm(Request $request)
-    {
-        //Validation rules for adding an aquarium
-        $rules = array(
-            'name' => 'required',
-            'tankSize' => 'required|numeric|min:0',
-            'type' => 'required',
-        );
-
-        //Custom error messages
-        $messages = [
-            'name.required' => 'Name is required',
-            'tankSize.required' => 'Size is required',
-            'tankSize.numeric' => 'Size must be numeric',
-            'tankSize.min' => 'Size must be a positive number',
-            'type.required' => 'Type is required',
-        ];
-
-        //Run validation on the request according to the defined rules
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        return $validator;
     }
 }

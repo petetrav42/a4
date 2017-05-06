@@ -43,24 +43,32 @@
             </tr>
             <tr>
                 <td class="aquarium-detail-name"><b>Type:</b></td>
-                <td class="aquarium-detail-value">{{$coral->type}}</td>
+                <td class="aquarium-detail-value">{{$coral->coral_type}}</td>
             </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Care Level:</b></td>
-                <td class="aquarium-detail-value">{{$coral->care_level}}</td>
-            </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Temperament:</b></td>
-                <td class="aquarium-detail-value">{{$coral->temperament}}</td>
-            </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Lighting:</b></td>
-                <td class="aquarium-detail-value">{{$coral->lighting}}</td>
-            </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Waterflow:</b></td>
-                <td class="aquarium-detail-value">{{$coral->waterflow}}</td>
-            </tr>
+            @if($coral->care)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Care Level:</b></td>
+                    <td class="aquarium-detail-value">{{$coral->care}}</td>
+                </tr>
+            @endif
+            @if($coral->temperament)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Temperament:</b></td>
+                    <td class="aquarium-detail-value">{{$coral->temperament}}</td>
+                </tr>
+            @endif
+            @if($coral->lighting)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Lighting:</b></td>
+                    <td class="aquarium-detail-value">{{$coral->lighting}}</td>
+                </tr>
+            @endif
+            @if($coral->waterflow)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Waterflow:</b></td>
+                    <td class="aquarium-detail-value">{{$coral->waterflow}}</td>
+                </tr>
+            @endif
             <tr>
                 <td class="aquarium-detail-name"><b>Date Added:</b></td>
                 <td class="aquarium-detail-value">{{ date('F d, Y @ H:i:s', strtotime($coral->created_at)) }}</td>
@@ -69,10 +77,12 @@
                 <td class="aquarium-detail-name"><b>Last Update:</b></td>
                 <td class="aquarium-detail-value">{{ date('F d, Y @ H:i:s', strtotime($coral->updated_at)) }}</td>
             </tr>
-            <tr>
-                <td class="aquarium-detail-name"><b>Notes:</b></td>
-                <td class="aquarium-detail-value">{{$coral->notes}}</td>
-            </tr>
+            @if($coral->notes)
+                <tr>
+                    <td class="aquarium-detail-name"><b>Notes:</b></td>
+                    <td class="aquarium-detail-value">{{$coral->notes}}</td>
+                </tr>
+            @endif
             <tr>
                 <td class="aquarium-detail-name">
                     <a class="btn btn-primary btn-aquarium-padding" href="{{ url('/coral/edit/' . $coral->id) }}">Edit</a>
