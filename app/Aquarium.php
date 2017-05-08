@@ -45,7 +45,7 @@ class Aquarium extends Model
         //Validation rules for adding an aquarium
         $rules = array(
             'name' => 'required|max:255',
-            'tankSize' => 'required|numeric|min:0',
+            'tankSize' => 'required|numeric|min:1',
             'type' => 'required',
             'image' => 'max:255',
             'notes' => 'max:255',
