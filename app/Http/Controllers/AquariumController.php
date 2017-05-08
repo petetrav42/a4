@@ -181,13 +181,6 @@ class AquariumController extends Controller
         //This will also delete any associated fish/corals since
         //cascade delete was set on the foreign key in the database
         if($aquarium){
-            $fishes = $aquarium->fishes;
-            $corals = $aquarium->corals;
-
-
-            //$fishes->attributes()->detach();
-            //$corals->attributes()->detach();
-
             $aquarium->Delete();
         }
 

@@ -67,7 +67,7 @@
         </div>
         @if($aquarium->type!='Freshwater')
             <div class='form-group text-left'>
-                <label for='reef_compatible' class='col-sm-5 control-label'>Reef Compatible</label>
+                <label class='col-sm-5 control-label'>Reef Compatible</label>
                 <div class='col-sm-4'>
                     @foreach($reef_compatible as $id => $value)
                         <input type="radio" name="reef_compatible" value="{{$value}}" @if(old('reef_compatible') == $value) CHECKED @endif> {{$value}}

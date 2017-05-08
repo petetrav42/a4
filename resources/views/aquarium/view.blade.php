@@ -41,9 +41,9 @@
 @section('content')
     <div class="col-lg-6 centerText">
         @if($aquarium->image)
-            <img src="{{$aquarium->image}}" title="{{$aquarium->name}}" class="pictureBorder" />
+            <img src="{{$aquarium->image}}" title="{{$aquarium->name}}" alt="{{$aquarium->name}}" class="pictureBorder" />
         @else
-            <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
+            <img src="/images/noimage.png" title="No Picture" alt="{{$aquarium->name}}" class='pictureBorder'/>
         @endif
     </div>
     <div class="col-lg-6 centerText">
@@ -92,9 +92,9 @@
         @foreach($fishes as $fish)
             <div class="col-lg-6 centerText">
                 @if($fish->image)
-                    <img src="{{$fish->image}}" title="{{$fish->name}}" class="pictureBorder" />
+                    <img src="{{$fish->image}}" title="{{$fish->name}}" alt="{{$fish->name}}" class="pictureBorder" />
                 @else
-                    <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
+                    <img src="/images/noimage.png" title="No Picture" alt="{{$fish->name}}" class='pictureBorder'/>
                 @endif
                 <div class="col">
                     <div class="row"><b>Name:</b> {{$fish->name}} </div>
@@ -117,9 +117,9 @@
             @foreach($corals as $coral)
                 <div class="col-lg-6 centerText">
                     @if($coral->image)
-                        <img src="{{$coral->image}}" title="{{$coral->name}}" class="pictureBorder" />
+                        <img src="{{$coral->image}}" title="{{$coral->name}}" alt="{{$coral->name}}" class="pictureBorder" />
                     @else
-                        <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
+                        <img src="/images/noimage.png" title="No Picture" alt="{{$coral->name}}" class='pictureBorder'/>
                     @endif
                     <div class="col">
                         <div class="row"><b>Name:</b> {{$coral->name}} </div>

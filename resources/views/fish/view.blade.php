@@ -30,9 +30,9 @@
 @section('content')
     <div class="col-lg-6">
         @if($fish->image)
-        <img src="{{$fish->image}}" title="{{$fish->name}}" class="pictureBorder" />
+        <img src="{{$fish->image}}" title="{{$fish->name}}" alt="{{$fish->name}}" class="pictureBorder" />
         @else
-        <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
+        <img src="/images/noimage.png" title="No Picture" alt="{{$fish->name}}" class='pictureBorder'/>
         @endif
     </div>
     <div class="col-lg-6">

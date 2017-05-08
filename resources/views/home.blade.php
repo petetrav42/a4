@@ -15,9 +15,9 @@
         @foreach($aquariums as $aquarium)
             <div class="col-lg-6">
                 @if($aquarium->image)
-                    <img src="{{$aquarium->image}}" title="{{$aquarium->name}}" class="pictureBorder" />
+                    <img src="{{$aquarium->image}}" title="{{$aquarium->name}}" alt="{{$aquarium->name}}" class="pictureBorder" />
                 @else
-                    <img src="/images/noimage.png" title="No Picture" class='pictureBorder'/>
+                    <img src="/images/noimage.png" title="No Picture" alt="{{$aquarium->name}}" class='pictureBorder'/>
                 @endif
                 <div class="col">
                     <div class="row"><b>Name:</b> {{$aquarium->name}} </div>

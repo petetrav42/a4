@@ -41,7 +41,7 @@
         <div class='form-group text-left'>
             <label for='type' class='col-sm-5 control-label'>Type<span class="required">*</span></label>
             <div class='col-sm-4'>
-                <input type="radio" name="type" value="{{'Freshwater'}}" @if(old('type') == 'Freshwater') CHECKED @endif> Freshwater
+                <input type="radio" name="type" id="type" value="{{'Freshwater'}}" @if(old('type') == 'Freshwater') CHECKED @endif> Freshwater
                 <input type="radio" name="type" value="{{'Saltwater'}}" @if(old('type') == 'Saltwater') CHECKED @endif> Saltwater
                 @if($errors->get('type'))
                     <div class="alert-danger text-center">
